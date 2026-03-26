@@ -7,25 +7,42 @@ import StockChart from './components/StockChart';
 import Holdings from './components/Holdings';
 import SectorChart from './components/SectorChart';
 import NewsFeed from './components/NewsFeed';
+import TechBadges from './components/TechBadges';
+import useWindowSize from './hooks/useWindowSize';
 
 export default function App() {
   const [time, setTime] = useState(new Date());
+  const { isMobile, isTablet } = useWindowSize();
 
   useEffect(() => {
     const t = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(t);
   }, []);
 
+  // Responsive grid column for main layout
+  const mainGridCols = isMobile
+    ? '1fr'
+    : isTablet
+    ? '1fr 280px'
+    : '1fr 320px';
+
+  const padding = isMobile ? '16px' : '24px';
+
   return (
     <div style={{ background: '#0a0e1a', minHeight: '100vh' }}>
       <Navbar />
       <MarketBar />
 
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '24px' }}>
+      <div style={{ maxWidth: '1400px', margin: '0 auto', padding, paddingBottom: '52px' }}>
         {/* Page header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '8px' }}>
+        <div style={{
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          marginBottom: '24px', flexWrap: 'wrap', gap: '8px',
+        }}>
           <div>
-            <h1 style={{ color: '#fff', fontSize: '22px', fontWeight: 800, marginBottom: '4px' }}>Portfolio Dashboard</h1>
+            <h1 style={{ color: '#fff', fontSize: isMobile ? '18px' : '22px', fontWeight: 800, marginBottom: '4px' }}>
+              Portfolio Dashboard
+            </h1>
             <p style={{ color: '#4a5568', fontSize: '13px' }}>Last updated: {time.toLocaleTimeString()}</p>
           </div>
           <button style={{
@@ -40,8 +57,8 @@ export default function App() {
           <PortfolioSummary />
         </div>
 
-        {/* Main grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '20px' }}>
+        {/* Main grid — responsive columns */}
+        <div style={{ display: 'grid', gridTemplateColumns: mainGridCols, gap: '20px' }}>
           {/* Left column */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', minWidth: 0 }}>
             <StockChart />
@@ -55,6 +72,8 @@ export default function App() {
           </div>
         </div>
       </div>
+
+      <TechBadges />
     </div>
   );
 }

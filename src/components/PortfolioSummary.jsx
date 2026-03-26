@@ -1,8 +1,11 @@
 import { motion } from 'framer-motion';
 import { portfolio, stockPrices } from '../data/mockData';
 import { TrendingUp, DollarSign, BarChart2, Percent } from 'lucide-react';
+import useWindowSize from '../hooks/useWindowSize';
 
 export default function PortfolioSummary() {
+  const { isMobile } = useWindowSize();
+
   const totalValue = portfolio.reduce((sum, s) => sum + stockPrices[s.symbol].price * s.shares, 0);
   const totalCost = portfolio.reduce((sum, s) => sum + s.avgPrice * s.shares, 0);
   const totalGain = totalValue - totalCost;
@@ -17,7 +20,11 @@ export default function PortfolioSummary() {
   ];
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
+    <div style={{
+      display: 'grid',
+      gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(auto-fit, minmax(200px, 1fr))',
+      gap: isMobile ? '12px' : '16px',
+    }}>
       {cards.map((c, i) => (
         <motion.div
           key={c.label}
@@ -25,15 +32,24 @@ export default function PortfolioSummary() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.08, duration: 0.35 }}
           className="glass"
-          style={{ padding: '20px' }}
+          style={{ padding: isMobile ? '16px' : '20px' }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
-            <span style={{ color: '#718096', fontSize: '12px', fontWeight: 600, letterSpacing: '0.5px', textTransform: 'uppercase' }}>{c.label}</span>
-            <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: `${c.color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <c.icon size={16} color={c.color} />
+            <span style={{
+              color: '#718096', fontSize: isMobile ? '10px' : '12px',
+              fontWeight: 600, letterSpacing: '0.5px', textTransform: 'uppercase',
+            }}>{c.label}</span>
+            <div style={{
+              width: '28px', height: '28px', borderRadius: '8px',
+              background: `${c.color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <c.icon size={14} color={c.color} />
             </div>
           </div>
-          <div style={{ fontSize: '22px', fontWeight: 800, color: c.color, marginBottom: '4px', fontFamily: 'monospace' }}>{c.value}</div>
+          <div style={{
+            fontSize: isMobile ? '17px' : '22px',
+            fontWeight: 800, color: c.color, marginBottom: '4px', fontFamily: 'monospace',
+          }}>{c.value}</div>
           <div style={{ color: '#4a5568', fontSize: '12px' }}>{c.sub}</div>
         </motion.div>
       ))}
