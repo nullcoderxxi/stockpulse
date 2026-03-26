@@ -1,16 +1,48 @@
-# React + Vite
+# StockPulse 📈
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Built by **Amandeep Singh** | Full Stack MERN Developer
 
-Currently, two official plugins are available:
+A live stock market dashboard with portfolio tracking, real-time charts, sector allocation, and market news feed.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**🔗 Live Demo:** [coming soon](#)
+**📁 GitHub:** [github.com/nullcoderxxi/stockpulse](https://github.com/nullcoderxxi/stockpulse)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **React.js** (Vite)
+- **Recharts** — area charts, pie charts
+- **Framer Motion** — spring animations, count-up, stagger
+- **Tailwind CSS** — utility styling
+- **Lucide React** — icons
+- **Python / Flask** *(backend-ready)*
+- **Chart.js** compatible
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+
+- Live market indices bar (S&P 500, NASDAQ, Dow Jones, Russell 2000)
+- Portfolio summary with animated count-up values
+- 30-day interactive area chart per stock (AAPL, MSFT, NVDA, GOOGL, AMZN, TSLA)
+- Holdings table with P&L per position
+- Sector allocation donut chart
+- Market news feed with sentiment badges
+- Fully responsive (mobile / tablet / desktop)
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+---
+
+Built with ❤️ by **Amandeep Singh**
+[GitHub](https://github.com/nullcoderxxi) · [LinkedIn](https://www.linkedin.com/in/aman1999/)
