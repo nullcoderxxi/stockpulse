@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { marketIndices } from '../data/mockData';
 import { TrendingUp, TrendingDown } from 'lucide-react';
 import useWindowSize from '../hooks/useWindowSize';
@@ -16,9 +17,25 @@ export default function MarketBar() {
       WebkitOverflowScrolling: 'touch',
       scrollbarWidth: 'none',
       msOverflowStyle: 'none',
+      alignItems: 'center',
     }}>
-      {marketIndices.map((idx) => (
-        <div key={idx.name} style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+      {/* Live market status dot */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+        <span className="blink" style={{
+          display: 'inline-block', width: '7px', height: '7px',
+          borderRadius: '50%', background: '#10b981',
+        }} />
+        <span style={{ color: '#10b981', fontSize: '11px', fontWeight: 600 }}>Open</span>
+      </div>
+
+      {marketIndices.map((idx, i) => (
+        <motion.div
+          key={idx.name}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: i * 0.08, duration: 0.35 }}
+          style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}
+        >
           <span style={{ color: '#718096', fontSize: isMobile ? '11px' : '12px', fontWeight: 600, letterSpacing: '0.5px' }}>{idx.name}</span>
           <span style={{ color: '#fff', fontSize: isMobile ? '12px' : '13px', fontWeight: 700 }}>{idx.value}</span>
           <span style={{
@@ -30,7 +47,7 @@ export default function MarketBar() {
             {idx.up ? <TrendingUp size={11} /> : <TrendingDown size={11} />}
             {idx.change}
           </span>
-        </div>
+        </motion.div>
       ))}
     </div>
   );

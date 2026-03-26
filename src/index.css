@@ -22,3 +22,18 @@ body {
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 16px;
 }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(0, 245, 212, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(0, 245, 212, 0.7); }
+}
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.blink { animation: blink 1.5s infinite; }
+.pulse-glow { animation: pulse-glow 2s infinite; }

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { TrendingUp, Bell, Settings, Search, X } from 'lucide-react';
 import useWindowSize from '../hooks/useWindowSize';
 
@@ -7,14 +8,18 @@ export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
 
   return (
-    <nav style={{
-      position: 'sticky', top: 0, zIndex: 100,
-      background: 'rgba(10,14,26,0.95)', backdropFilter: 'blur(12px)',
-      borderBottom: '1px solid rgba(255,255,255,0.07)',
-      padding: isMobile ? '0 16px' : '0 24px',
-      height: '60px',
-      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-    }}>
+    <motion.nav
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      style={{
+        position: 'sticky', top: 0, zIndex: 100,
+        background: 'rgba(10,14,26,0.95)', backdropFilter: 'blur(12px)',
+        borderBottom: '1px solid rgba(255,255,255,0.07)',
+        padding: isMobile ? '0 16px' : '0 24px',
+        height: '60px',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      }}>
       {/* Logo */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
         <TrendingUp size={22} color="#00f5d4" />
@@ -22,7 +27,7 @@ export default function Navbar() {
           Stock<span style={{ color: '#00f5d4' }}>Pulse</span>
         </span>
         {!isMobile && (
-          <span style={{
+          <span className="blink" style={{
             marginLeft: '8px', padding: '2px 8px', borderRadius: '20px',
             fontSize: '10px', fontWeight: 700, background: '#00f5d420',
             color: '#00f5d4', border: '1px solid #00f5d430', letterSpacing: '1px',
@@ -101,6 +106,6 @@ export default function Navbar() {
           </div>
         </div>
       )}
-    </nav>
+    </motion.nav>
   );
 }

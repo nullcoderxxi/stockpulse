@@ -48,9 +48,13 @@ export default function Holdings() {
           return (
             <motion.div
               key={s.symbol}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.05, duration: 0.3 }}
+              variants={{
+                hidden: { opacity: 0, x: -30 },
+                visible: { opacity: 1, x: 0 },
+              }}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: i * 0.06, type: 'spring', stiffness: 200, damping: 25 }}
               style={{
                 display: 'grid',
                 gridTemplateColumns: gridCols,
