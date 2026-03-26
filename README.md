@@ -4,7 +4,7 @@
 
 A live stock market dashboard with portfolio tracking, real-time charts, sector allocation, and market news feed.
 
-**🔗 Live Demo:** [coming soon](#)
+**🔗 Live Demo:** [stockpulsebyaman.netlify.app](https://stockpulsebyaman.netlify.app/)
 **📁 GitHub:** [github.com/nullcoderxxi/stockpulse](https://github.com/nullcoderxxi/stockpulse)
 
 ---
